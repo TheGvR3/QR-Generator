@@ -1,174 +1,258 @@
-*{
-    box-sizing: border-box;
+:root {
+    --primary-color: #6a2bff;
+    --primary-hover: #5420cc;
+    --bg-gradient: linear-gradient(135deg, #1c1e26 0%, #2a2d3e 100%);
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --text-color: #ffffff;
+    --text-muted: #aab2cd;
 }
 
-body{
-    background: #1c1e26;
-    font-family: sans-serif;
-    max-width: 500px;
-    height: 100vh;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    padding-top: 70px;
-}
-
-input[type="color"]{
-    border: none;
-    width: 48%;
-    height: 40px;
-    border-radius: 3px;
-}
-
-input[type="color"]::-webkit-color-swatch-wrapper{
+* {
+    margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-input[type="color"]::-webkit-color-swatch{
-    border: none;
+body {
+    background: #12141d;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    padding: 80px 20px 20px;
+    overflow-x: hidden;
 }
 
-a{
-    text-decoration: none;
-}
-
-.qr-text{
-    padding: 1rem;
-    display: block;
-    background: #181b29;
-    border: 1px solid #414866;
-    border-radius: 4px;
+/* Background aesthetic blobs */
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    margin: 0.5rem 0 1rem 0;
-    color: #fff;
-    outline: none;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 15% 50%, rgba(106, 43, 255, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(43, 255, 184, 0.1), transparent 25%);
 }
 
-.qr-text::placeholder{
-    color: #8b92b7;
-    font-weight: 500;
-}
-
-#qr-code{
-    height: 500px;
-    width: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #414866;
-}
-
-#qr-code img, #qr-code canvas{
-    max-width: 100% !important;
-    max-height: 100% !important;
-}
-
-.row{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.sizes{
-    width: 48%;
-    height: 40px;
-    color: #fff;
-    background: #181b29;
-    border: 1px solid #414866;
-    border-radius: 4px;
-    outline: none;
-}
-
-.btn{
-    color: #fff;
-    max-width: 200px;
-    padding: 14px;
-    background: rgb(106, 43, 255);
-    border-radius: 4px;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 500;
-    flex: 1;
-}
-
-.btn img{
-    width: 20px;
-    margin-left: 10px;
-}
-
-.share-btn{
-    margin-left: 0.7rem;
-}
-
-.action-container{
-    display: flex;
-    margin: 1rem 0;
-}
-
+/* Navbar */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: #181b29;
-    padding: 1rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    border-bottom: 1px solid #414866;
+    gap: 1.5rem;
+    background: rgba(18, 20, 29, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: var(--glass-border);
+    z-index: 100;
 }
 
 .nav-btn {
-    color: #fff;
-    padding: 0.5rem 1rem;
-    background: rgb(106, 43, 255);
-    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    transition: opacity 0.2s;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    border: var(--glass-border);
+    transition: all 0.3s ease;
 }
 
 .nav-btn:hover {
-    opacity: 0.8;
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
 }
 
 .nav-btn img {
     width: 20px;
-    height: 20px;
 }
 
-@media (max-width: 512px){
-    body{
-        max-width: 100%;
-        padding: 70px 10px 10px 10px;
-    }
-    #qr-code{
-        width: 95vw;
-        height: 95vw;
-    }
-    #qr-code img, #qr-code canvas{
-        max-width: 95vw !important;
-        max-height: 95vw !important;
-    }
-    .btn{
-        min-width: unset;
-    }
+/* Container */
+.container {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
 }
 
-@media (max-width: 350px){
-    .action-container{
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #fff, #aab2cd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+/* Card Style */
+.qr-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    border: var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Inputs */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.qr-text {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.qr-text:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(106, 43, 255, 0.2);
+}
+
+/* Controls Row */
+.controls-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.controls-row > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    margin-left: 4px;
+}
+
+/* Custom Color Input */
+input[type="color"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Select */
+.sizes {
+    width: 100%;
+    padding: 12px;
+    height: 45px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+}
+
+/* QR Area */
+#qr-code {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 0 auto 1.5rem;
+    border: 1px dashed rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+}
+
+#qr-code img, #qr-code canvas {
+    max-width: 100%;
+    height: auto !important;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Buttons */
+.action-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.primary-btn {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(106, 43, 255, 0.4);
+}
+
+.primary-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(106, 43, 255, 0.5);
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .controls-row {
+        flex-direction: row; /* Keep side by side on mobile if possible */
+    }
+    .action-container {
         flex-direction: column;
     }
-    .share-btn{
-        margin-left: 0;
-        margin-top: 0.7rem;
+    #qr-code {
+        padding: 10px;
     }
 }
